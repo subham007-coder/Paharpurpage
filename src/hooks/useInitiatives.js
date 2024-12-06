@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { BACKEND_URL } from '../config/constants'
+
+const BACKEND_URL = "https://paharpur-backend-adminpanel.onrender.com"
 
 export const useInitiatives = () => {
   const [initiatives, setInitiatives] = useState([])

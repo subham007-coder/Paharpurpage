@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import InitiativeModal from '../modals/InitiativeModal';
-import { BACKEND_URL } from '../config/constants';
 import '../../styles/initiatives.css';
+
+const BACKEND_URL = "https://paharpur-backend-adminpanel.onrender.com";
 
 const InitiativesSection = () => {
   const [initiatives, setInitiatives] = useState([]);
