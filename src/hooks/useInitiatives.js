@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { getInitiatives } from '../services/api'
+import axios from 'axios'
+import { BACKEND_URL } from '../config/constants'
 
 export const useInitiatives = () => {
   const [initiatives, setInitiatives] = useState([])
@@ -9,8 +10,8 @@ export const useInitiatives = () => {
   useEffect(() => {
     const fetchInitiatives = async () => {
       try {
-        const data = await getInitiatives()
-        setInitiatives(data)
+        const response = await axios.get(`${BACKEND_URL}/api/initiatives`)
+        setInitiatives(response.data)
       } catch (err) {
         setError(err.message)
       } finally {

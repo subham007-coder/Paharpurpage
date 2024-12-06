@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import EnquiryModal from '../modals/EnquiryModal';
+import { BACKEND_URL } from '../config/constants';
 
 const Footer = () => {
   const [footerSections, setFooterSections] = useState([]);
@@ -10,7 +11,7 @@ const Footer = () => {
     // Fetch footer sections and subitems on component mount
     const fetchFooterSections = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/footer");
+        const response = await axios.get(`${BACKEND_URL}/api/footer`);
         setFooterSections(response.data); // Assuming the response contains footer sections with subitems
       } catch (error) {
         console.error("Error fetching footer sections:", error);
@@ -76,7 +77,6 @@ const Footer = () => {
                 alt="Icon 2"
                 className="w-6 h-6"
               />
-              {/* Add other icons */}
             </div>
             <div>
               <p className="text-blue-600 font-bold">+91-33-4013-3000</p>

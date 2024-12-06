@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import InitiativeModal from '../modals/InitiativeModal';
+import { BACKEND_URL } from '../config/constants';
 import '../../styles/initiatives.css';
 
 const InitiativesSection = () => {
@@ -12,7 +13,7 @@ const InitiativesSection = () => {
   useEffect(() => {
     const fetchInitiatives = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/initiatives');
+        const response = await fetch(`${BACKEND_URL}/api/initiatives`);
         if (!response.ok) {
           throw new Error('Failed to fetch initiatives');
         }
