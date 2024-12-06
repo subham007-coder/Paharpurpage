@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import EnquiryModal from '../modals/EnquiryModal';
-import { BACKEND_URL } from '../config/constants';
+
+const BACKEND_URL = "https://paharpur-backend-adminpanel.onrender.com";
 
 const Footer = () => {
   const [footerSections, setFooterSections] = useState([]);
