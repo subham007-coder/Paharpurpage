@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const BACKEND_URL = "https://paharpur-backend-adminpanel.onrender.com";
+
 const EnquiryModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -22,7 +24,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/enquiries', formData);
+      await axios.post(`${BACKEND_URL}/api/enquiries`, formData);
       alert('Enquiry submitted successfully!');
       onClose();
       setFormData({

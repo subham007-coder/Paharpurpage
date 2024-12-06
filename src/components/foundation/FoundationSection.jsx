@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const BACKEND_URL = "https://paharpur-backend-adminpanel.onrender.com";
+
 const FoundationSection = () => {
   const [heroText, setHeroText] = useState("");
   const [heroDescription, setHeroDescription] = useState("");
@@ -9,7 +11,7 @@ const FoundationSection = () => {
     // Fetch hero text and description from the API
     const fetchHeroText = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/hero-text");
+        const response = await axios.get(`${BACKEND_URL}/api/hero-text`);
         const data = response.data;
         setHeroText(data.heroText);
         setHeroDescription(data.heroDescription);

@@ -1,0 +1,1 @@
+export const BACKEND_URL = "https://paharpur-backend-adminpanel.onrender.com"; 

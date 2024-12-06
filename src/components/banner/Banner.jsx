@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const BACKEND_URL = "https://paharpur-backend-adminpanel.onrender.com";
+
 const Banner = () => {
   const [bannerData, setBannerData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -10,7 +12,7 @@ const Banner = () => {
     // Fetch banner data from backend
     const fetchBannerData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/banner");
+        const response = await axios.get(`${BACKEND_URL}/api/banner`);
         setBannerData(response.data); // Assuming your backend returns { imageUrl, overlayText }
         setLoading(false);
       } catch (err) {

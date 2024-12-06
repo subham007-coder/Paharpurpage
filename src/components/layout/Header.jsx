@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const BACKEND_URL = "https://paharpur-backend-adminpanel.onrender.com";
+
 const Header = () => {
   const [headerData, setHeaderData] = useState(null);
   const [error, setError] = useState(null);
@@ -10,13 +12,13 @@ const Header = () => {
   useEffect(() => {
     const fetchHeaderData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/header'); // Adjust this URL to your backend route
-        setHeaderData(response.data); // Store fetched data in state
+        const response = await axios.get(`${BACKEND_URL}/api/header`);
+        setHeaderData(response.data);
       } catch (err) {
         setError('Failed to load header data');
         console.error(err);
       } finally {
-        setLoading(false); // Set loading to false once data is fetched
+        setLoading(false);
       }
     };
     fetchHeaderData();
