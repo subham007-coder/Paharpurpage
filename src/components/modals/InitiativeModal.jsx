@@ -2,6 +2,8 @@ import { Fragment, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
+// const BACKEND_URL = "http://147.79.66.243:5000";
+
 function InitiativeModal({ initiative, onClose }) {
   const [loading, setLoading] = useState(false);
 

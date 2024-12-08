@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const BACKEND_URL = "https://paharpur-backend-adminpanel.onrender.com";
+const BACKEND_URL = "http://147.79.66.243:5000"
 
 const EnquiryModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({

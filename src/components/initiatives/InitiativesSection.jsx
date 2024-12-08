@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import InitiativeModal from '../modals/InitiativeModal';
 import '../../styles/initiatives.css';
 
-const BACKEND_URL = "https://paharpur-backend-adminpanel.onrender.com";
+const BACKEND_URL = "http://147.79.66.243:5000"
 
 const InitiativesSection = () => {
   const [initiatives, setInitiatives] = useState([]);
