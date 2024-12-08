@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import EnquiryModal from '../modals/EnquiryModal';
 
-const BACKEND_URL = "http://147.79.66.243:5000"
+const BACKEND_URL = "https://api.adsu.shop"
 
 const Footer = () => {
   const [footerSections, setFooterSections] = useState([]);
