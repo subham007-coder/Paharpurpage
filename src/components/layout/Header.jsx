@@ -7,6 +7,7 @@ const Header = () => {
   const [headerData, setHeaderData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [logoSrc, setLogoSrc] = useState(null);
 
   // Fetch header data from the backend on component mount
   useEffect(() => {
@@ -14,6 +15,19 @@ const Header = () => {
       try {
         const response = await axios.get(`${BACKEND_URL}/api/header`);
         setHeaderData(response.data);
+        
+        // If logoUrl is a blob URL, fetch it and convert to base64
+        if (response.data.logoUrl && response.data.logoUrl.startsWith('blob:')) {
+          const imageResponse = await fetch(response.data.logoUrl);
+          const blob = await imageResponse.blob();
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            setLogoSrc(reader.result);
+          };
+          reader.readAsDataURL(blob);
+        } else {
+          setLogoSrc(response.data.logoUrl);
+        }
       } catch (err) {
         setError('Failed to load header data');
         console.error(err);
@@ -47,11 +61,17 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-3">
-          <img
-            src={logoUrl}
-            alt="Logo"
-            className="h-10"
-          />
+          {logoSrc && (
+            <img
+              src={logoSrc}
+              alt="Logo"
+              className="h-10"
+              onError={(e) => {
+                console.error('Image failed to load');
+                e.target.src = '/fallback-image.png'; // Add a fallback image
+              }}
+            />
+          )}
         </div>
 
         {/* Contact Information */}
