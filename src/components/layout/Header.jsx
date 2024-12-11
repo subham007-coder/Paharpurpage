@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const BACKEND_URL = "https://api.adsu.shop";
+const BACKEND_URL = "https://api.adsu.shop"
 
 const Header = () => {
   const [headerData, setHeaderData] = useState(null);
@@ -24,11 +24,11 @@ const Header = () => {
   }, []);
 
   if (loading) {
-    return <div className="w-full h-16 bg-gray-100 animate-pulse"></div>;
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div className="bg-red-100 text-red-600 p-4">{error}</div>;
+    return <div>{error}</div>;
   }
 
   if (!headerData || !headerData.contact || !Array.isArray(headerData.navigationLinks)) {
@@ -42,21 +42,21 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-3">
-          {logoUrl && (
-            <img
-              src={logoUrl}
-              alt="Logo"
-              className="h-12 w-auto object-contain"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/fallback-logo.png'; // Add a fallback logo image
-              }}
-            />
-          )}
+          <a href="https://www.paharpur.com">
+          <img
+            src={logoUrl}
+            alt="Logo"
+            className="h-10"
+            onError={(e) => {
+              e.target.onerror = null;
+              console.error('Error loading image:', e);
+            }}
+          />
+          </a>
         </div>
 
         {/* Contact Information */}
-        <div className="flex flex-col text-center">
+        <div className="hidden md:flex flex-col text-center">
           <p className="text-sm">
             <span className="font-bold">{contact?.phone || "No phone available"}</span>
           </p>
@@ -64,29 +64,29 @@ const Header = () => {
         </div>
 
         {/* Navigation Links */}
-        <nav className="flex items-center justify-center space-x-8 text-sm font-medium">
+        <nav className="flex-1 hidden md:flex items-center justify-center space-x-8 text-sm font-medium">
           {navigationLinks && navigationLinks.length > 0 ? (
             <>
               {navigationLinks.slice(0, 6).map((link, index) => (
                 <a
                   key={index}
-                  href={link.url}
-                  className="hover:text-blue-600 transition-colors"
+                  href={link.url || `#${link.name.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="hover:text-blue-600"
                 >
-                  {link.name}
+                  {link.name || link}
                 </a>
               ))}
               {navigationLinks.length > 6 && (
                 <div className="relative group">
-                  <span className="hover:text-blue-600 cursor-pointer">More</span>
-                  <div className="absolute hidden group-hover:block right-0 mt-2 bg-white border border-gray-300 shadow-lg p-2 rounded-md z-50">
+                  <span className="hover:text-blue-600">...</span>
+                  <div className="absolute hidden group-hover:block bg-white border border-gray-300 shadow-lg p-2">
                     {navigationLinks.slice(6).map((link, index) => (
                       <a
                         key={index + 6}
-                        href={link.url}
-                        className="block py-2 px-4 hover:text-blue-600 whitespace-nowrap"
+                        href={link.url || `#${link.name.toLowerCase().replace(/\s+/g, '-')}`}
+                        className="block hover:text-blue-600"
                       >
-                        {link.name}
+                        {link.name || link}
                       </a>
                     ))}
                   </div>
