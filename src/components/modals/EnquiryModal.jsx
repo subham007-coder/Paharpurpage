@@ -25,10 +25,11 @@ const EnquiryModal = ({ isOpen, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    console.log('Submitting form...');
     try {
       await axios.post(`${BACKEND_URL}/api/enquiries`, formData);
       toast.success('Enquiry submitted successfully!');
-      onClose();
+      console.log('Success toast shown');
       setFormData({
         name: '',
         email: '',
@@ -36,9 +37,13 @@ const EnquiryModal = ({ isOpen, onClose }) => {
         subject: '',
         message: '',
       });
+      setTimeout(() => {
+        onClose();
+      }, 1000);
     } catch (error) {
       console.error('Error submitting enquiry:', error);
       toast.error('Failed to submit enquiry. Please try again.');
+      console.log('Error toast shown');
     }
     setLoading(false);
   };
