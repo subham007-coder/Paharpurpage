@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 import Banner from './components/banner/Banner';
 import FoundationSection from './components/foundation/FoundationSection';
 import InitiativesSection from './components/initiatives/InitiativesSection';
@@ -32,6 +33,7 @@ function App() {
       </div>
       {/* Footer */}
       <Footer />
+      <ToastContainer />
     </>
   );
 }
