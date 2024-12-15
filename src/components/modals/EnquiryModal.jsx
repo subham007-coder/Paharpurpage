@@ -136,6 +136,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
               {loading ? 'Submitting...' : 'Submit Enquiry'}
             </button>
           </form>
+          <button onClick={() => toast.success('Test Toast!')}>Test Toast</button>
         </div>
       </div>
     </>
